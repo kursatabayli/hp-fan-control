@@ -34,7 +34,7 @@ This software has been developed and verified on the following hardware and soft
 
 ## Installation
 
-### Method 1: Fedora / RHEL (Recommended)
+### Method 1: Fedora (Recommended)
 
 A ready-to-use `.rpm` package is available for Fedora users.
 
