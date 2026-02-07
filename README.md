@@ -38,7 +38,7 @@ This software has been developed and verified on the following hardware and soft
 
 A ready-to-use `.rpm` package is available for Fedora users.
 
-1.  Download the `hp-fan-control-0.1.0-1.x86_64-rpm.tar.xz` file from the **Releases** page.
+1.  Download the `hp-fan-control-0.1.0-1.x86_64.rpm` file from the **Releases** page.
 2.  Open your terminal and install the package:
 
 ```sh
@@ -47,7 +47,7 @@ sudo dnf install ./hp-fan-control-0.1.0-1.x86_64.rpm
 
 ### Method 2: Other Distributions (Universal Installer)
 
-For Ubuntu, Debian, Arch, Mint, or other distributions, you can use the `.zip` package.
+For Ubuntu, Debian, Arch, Mint, or other distributions, you can use the `.tar.xz` package.
 
 1.  Download the `HpFanControl_Installer_v0.1.0-1.x86_64.tar.xz` file from the **Releases** page.
 2.  Extract the file and navigate into the folder via terminal.
