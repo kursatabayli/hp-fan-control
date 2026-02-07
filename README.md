@@ -80,11 +80,12 @@ sudo ./uninstall.sh
 
 ---
 
-## 🛠️ Technologies
-
-- **Frontend:** React, TypeScript, Tailwind CSS (Neon Theme)
-- **Backend:** Rust (Tauri Framework)
-
 ## ⚠️ Disclaimer
 
 This software modifies hardware fan settings. The software is provided "as is". Running fans at maximum speed continuously may affect hardware lifespan or cause noise. The developer cannot be held responsible for any hardware or software issues that may arise from use.
+
+---
+
+### 📄 License
+
+This project is licensed under the [MIT License](https://github.com/kursatabayli/hp-fan-control/blob/main/LICENSE)
