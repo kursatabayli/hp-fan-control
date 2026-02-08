@@ -38,18 +38,21 @@ This software has been developed and verified on the following hardware and soft
 
 A ready-to-use `.rpm` package is available for Fedora users.
 
-1.  Download the lastest `.rpm` file from the **Releases** page.
+1.  Download the lastest `.rpm` file from the **[Releases](https://github.com/kursatabayli/hp-fan-control/releases)** page.
 2.  Open your terminal and install the package:
 
 ```sh
 sudo dnf install ./hp-fan-control-*.rpm
 ```
 
-### Method 2: Other Distributions (Universal Installer)
+### Method 2: Other Distributions
 
-For Ubuntu, Debian, Arch, Mint, or other distributions, you can use the `.tar.xz` package.
+> [!WARNING]
+> **Experimental Support:** This application has been developed and **verified primarily on Fedora Linux.**
+While the universal installer is designed to work on other distributions (Ubuntu, Debian, Arch, Mint, etc.), they have **not been officially verified**. Please use with caution and report any issues.
+For Ubuntu, Debian, Arch, Mint, or other distributions, you can use the `*.tar.xz` package.
 
-1.  Download the `*.tar.xz` file from the **Releases** page.
+1.  Download the lastest `*.tar.xz` file from the **[Releases](https://github.com/kursatabayli/hp-fan-control/releases)** page.
 2.  Extract the file and navigate into the folder via terminal.
 3.  Run the installation script:
 
