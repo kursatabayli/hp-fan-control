@@ -15,13 +15,10 @@ impl AppState {
     }
 }
 
-#[derive(Serialize, Clone, Debug)]
-pub struct FanSensor {
-    pub id: String,
-    pub rpm: i32,
-}
-
 #[derive(Serialize, Clone)]
 pub struct SystemStats {
-    pub fans: Vec<FanSensor>,
+    pub cpu_fan_rpm: i32,
+    pub gpu_fan_rpm: i32,
+    pub cpu_temp: i32,
+    pub gpu_temp: i32,
 }

@@ -5,7 +5,7 @@ use std::thread;
 use std::time::Duration;
 use tauri::State;
 
-const HELPER_PATH: &str = "/usr/local/bin/hp-fan-helper";
+const HELPER_PATH: &str = "/usr/bin/hp-fan-helper";
 
 fn call_root_helper(mode: &str) -> Result<(), String> {
     let output = Command::new("pkexec")
@@ -23,14 +23,18 @@ fn call_root_helper(mode: &str) -> Result<(), String> {
 }
 
 #[tauri::command]
-pub fn get_fan_speeds() -> SystemStats {
-    let fans = if let Some(path) = hardware::find_hwmon_by_name("hp") {
-        hardware::scan_fans(&path)
-    } else {
-        Vec::new()
-    };
+pub fn get_system_stats() -> SystemStats {
+    let (cpu_fan_rpm, gpu_fan_rpm) = hardware::get_fan_rpms();
 
-    SystemStats { fans }
+    let cpu_temp = hardware::get_cpu_temp();
+    let gpu_temp = hardware::get_gpu_temp().unwrap_or(cpu_temp);
+
+    SystemStats {
+        cpu_temp,
+        gpu_temp,
+        cpu_fan_rpm,
+        gpu_fan_rpm,
+    }
 }
 
 #[tauri::command]

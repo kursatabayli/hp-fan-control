@@ -1,8 +1,6 @@
-export interface FanSensor {
-  id: string;
-  rpm: number;
-}
-
 export interface SystemStats {
-  fans: FanSensor[];
+  cpu_temp: number;
+  gpu_temp: number;
+  cpu_fan_rpm: number;
+  gpu_fan_rpm: number;
 }

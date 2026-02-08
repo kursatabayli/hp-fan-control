@@ -15,7 +15,7 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             greet,
             commands::set_fan_mode,
-            commands::get_fan_speeds
+            commands::get_system_stats
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
