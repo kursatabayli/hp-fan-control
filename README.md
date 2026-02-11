@@ -6,7 +6,7 @@
 
 A modern Linux desktop application designed for **HP Victus** series laptops, allowing you to take full control of your thermal management.
 
-## 🚀 v0.3.0 Update: Manual Control is Here!
+## v0.3.0 Update: Manual Control is Here!
 
 With the release of **v0.3.0**, you can now create custom fan curves for both CPU and GPU independently. However, this advanced functionality requires a **custom kernel driver** (included in the release).
 
@@ -27,12 +27,7 @@ With the release of **v0.3.0**, you can now create custom fan curves for both CP
 
 ---
 
-<<<<<<< HEAD
-1.  Download the lastest `.rpm` file from the **[Releases](https://github.com/kursatabayli/hp-fan-control/releases)** page.
-2.  Open your terminal and install the package:
-=======
-## 🔧 About the Kernel Driver & Credits
->>>>>>> d1f7363 (feat: Release v0.3.0 - Manual Fan Control & Curve Editor)
+## About the Kernel Driver & Credits
 
 To enable manual fan control on HP Victus devices, this project utilizes a modified version of the `hp-wmi` driver.
 
