@@ -55,8 +55,8 @@ const HardwareCard = ({ title, temp, fanSpeed, icon: Icon }: any) => {
 export const StatsDisplay = ({ stats }: Props) => {
   return (
     <div className="grid grid-cols-2 gap-3 w-full">
-      <HardwareCard title="CPU" temp={stats.cpu_temp} fanSpeed={stats.cpu_fan_rpm} icon={Cpu} />
-      <HardwareCard title="GPU" temp={stats.gpu_temp} fanSpeed={stats.gpu_fan_rpm} icon={Gpu} />
+      <HardwareCard title="CPU" temp={stats.cpuTemp} fanSpeed={stats.cpuFanRpm} icon={Cpu} />
+      <HardwareCard title="GPU" temp={stats.gpuTemp} fanSpeed={stats.gpuFanRpm} icon={Gpu} />
     </div>
   );
 };

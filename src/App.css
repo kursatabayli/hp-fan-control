@@ -1,13 +1,11 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #09090b;
+  --color-background: #050505;
   --color-surface: #18181b;
-  --color-primary: #3b82f6;
-  --color-danger: #ef4444;
 
   --animate-float: float 6s ease-in-out infinite;
-  --animate-glow: glow 2s ease-in-out infinite alternate;
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 @keyframes float {
@@ -22,21 +20,12 @@
   }
 }
 
-@keyframes glow {
-  from {
-    box-shadow: 0 0 10px -5px var(--color-primary);
-  }
-  to {
-    box-shadow: 0 0 25px 5px var(--color-primary);
-  }
-}
-
 body {
   background-color: var(--color-background);
   color: #fff;
-  font-family: "Inter", sans-serif;
-  overflow: hidden;
+  font-family: "Inter", system-ui, sans-serif;
   user-select: none;
+  overflow: hidden;
 }
 
 ::-webkit-scrollbar {
