@@ -59,7 +59,7 @@ You need `dkms` and kernel headers to compile the driver.
 * **Arch:** `sudo pacman -S dkms linux-headers base-devel`
 
 ### Step 1: Install the Driver
-1.  Download the release `.zip` file.
+1.  Download one of the release files.
 2.  Navigate to the `driver` folder inside.
 3.  Run the installer:
     ```sh
@@ -69,7 +69,7 @@ You need `dkms` and kernel headers to compile the driver.
 ### Step 2: Install the Application
 **For Fedora (RPM):**
 ```sh
-sudo dnf install ./hp-fan-control-*.rpm
+sudo dnf install ./hp-fan-control-*.rpm.tar.xz
 ```
 
 ### Method 2: Other Distributions
