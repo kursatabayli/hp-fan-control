@@ -1,0 +1,61 @@
+﻿<MudPaper Elevation="0" Class="d-flex flex-column gap-4 pa-6 rounded-xl relative overflow-hidden"
+          Style="transition: border-color 0.3s">
+
+  <MudStack Row="true" AlignItems="AlignItems.Start" Justify="Justify.SpaceBetween">
+
+    <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="3">
+      <MudAvatar Variant="Variant.Filled" Color="@(IsReadOnly? Color.Secondary: Color.Primary)" Rounded="true">
+        <MudIcon Icon="@Icons.Material.Filled.ShowChart" />
+      </MudAvatar>
+      <MudStack Spacing="0">
+        <MudText Typo="Typo.h6" Class="fw-bold">Fan Curves</MudText>
+        <MudText Typo="Typo.caption" Class="mud-text-secondary">
+          @(IsReadOnly ? "System Controlled Profile" : "User Defined Profile")
+        </MudText>
+      </MudStack>
+    </MudStack>
+
+    <MudChip T="string" Variant="Variant.Outlined" Color="@(IsReadOnly? Color.Secondary: Color.Success)"
+             Size="Size.Small" Icon="@(IsReadOnly ? Icons.Material.Filled.Lock : Icons.Material.Filled.Edit)">
+      @(IsReadOnly ? "VIEW ONLY" : "EDIT MODE")
+    </MudChip>
+  </MudStack>
+
+  <MudDivider />
+
+  <MudStack Spacing="6" Class="@(IsReadOnly ? "opacity-60 filter-grayscale pointer-events-none" : "")"
+            Style="transition: all 0.3s ease;">
+
+    <CurveEditor Title="CPU FAN" Color="#f43f5e" Points="@_draftConfig.CpuCurve" CurrentTemp="@CurrentCpuTemp"
+                 OnChanged="OnCurveEdited" />
+
+    <MudDivider />
+
+    <CurveEditor Title="GPU FAN" Color="#00e5ff" Points="@_draftConfig.GpuCurve" CurrentTemp="@CurrentGpuTemp"
+                 OnChanged="OnCurveEdited" />
+  </MudStack>
+
+  <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween"
+            Class="mt-2 pt-4 border-t mud-border-lines-default">
+
+    <MudButton OnClick="RestoreDefaults" StartIcon="@Icons.Material.Filled.RestartAlt" Variant="Variant.Text"
+               Color="Color.Default" Size="Size.Small" Disabled="@IsReadOnly">
+      Reset to Default
+    </MudButton>
+
+    <MudStack Row="true" Spacing="2" Class="@(_isDirty ? "visible" : "invisible")">
+
+      <MudButton OnClick="DiscardChanges" StartIcon="@Icons.Material.Filled.Undo" Variant="Variant.Outlined"
+                 Color="Color.Error" Size="Size.Small">
+        Discard
+      </MudButton>
+
+      <MudButton OnClick="SaveChanges" Variant="Variant.Filled" Color="Color.Success"
+                 StartIcon="@Icons.Material.Filled.Save" Size="Size.Small" Class="px-6 rounded-lg shadow-md">
+        Apply
+      </MudButton>
+    </MudStack>
+
+  </MudStack>
+
+</MudPaper>

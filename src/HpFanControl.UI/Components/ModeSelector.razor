@@ -1,0 +1,7 @@
+<MudToggleGroup T="FanMode" SelectionMode="SelectionMode.SingleSelection" Value="@_currentMode"
+                ValueChanged="@OnUiChange" Color="Color.Primary" CheckMark="true" Delimiters="true" Ripple="true">
+    @foreach (var mode in _modes)
+    {
+        <MudToggleItem Value="@mode.Id" SelectedIcon="@mode.Icon" UnselectedIcon="@mode.Icon" Text="@mode.Label" />
+    }
+</MudToggleGroup>

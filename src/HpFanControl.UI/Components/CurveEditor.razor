@@ -1,0 +1,97 @@
+﻿<MudPaper Elevation="0" Class="d-flex flex-column relative overflow-visible"
+          Style="background: transparent; user-select: none;">
+
+  <MudStack Row="true" Justify="Justify.SpaceBetween" AlignItems="AlignItems.Center" Class="mb-4 px-1">
+    <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
+      <div
+        style="@($"width: 4px; height: 24px; background-color: {Color}; border-radius: 4px; box-shadow: 0 0 8px {Color};")">
+      </div>
+      <MudText Typo="Typo.subtitle2" Color="MudBlazor.Color.Primary" Class="fw-bold text-uppercase ls-1"
+               Style="letter-spacing: 1px;">
+        @Title
+      </MudText>
+    </MudStack>
+  </MudStack>
+
+  <div @ref="_containerRef" class="relative w-100" style="@($"height: {Height}px; touch-action: none;")">
+
+    <svg @ref="_svgRef" width="@_width" height="@Height"
+         style="overflow: visible; z-index: 10; position: relative; cursor: crosshair;" @onpointerdown="HandlePointerDown"
+         @onpointerup="HandlePointerUp" @onpointerleave="HandlePointerUp" @onpointermove="HandlePointerMove">
+
+      <defs>
+        <linearGradient id="@($"grad-{_guid}")" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="@Color" stop-opacity="0.3" />
+          <stop offset="100%" stop-color="@Color" stop-opacity="0.0" />
+        </linearGradient>
+      </defs>
+
+      @for (int i = 0; i < Points.Count; i++)
+      {
+        var x = GetPointX(i);
+        <line x1="@Invariant(x)" y1="0" x2="@Invariant(x)" y2="@Invariant(Height)" stroke="currentColor"
+              class="mud-text-disabled" stroke-opacity="@(i == 0 || i == Points.Count - 1 ? "0.2" : "0.05")"
+              stroke-width="1" />
+      }
+      @for (int i = 0; i <= 4; i++)
+      {
+        var y = i * (Height / 4.0);
+        <line x1="0" y1="@Invariant(y)" x2="@Invariant(_width)" y2="@Invariant(y)" stroke="currentColor"
+              class="mud-text-disabled" stroke-opacity="0.05" stroke-width="1" />
+      }
+
+
+      <path d="@_areaPath" fill="@($"url(#grad-{_guid})")" />
+
+      <path d="@_linePath" fill="none" stroke="@Color" stroke-width="2"
+            style="@($"filter: drop-shadow(0 0 6px {Color});")" />
+
+      @{
+        var tempX = GetCurrentTempX();
+        if (tempX >= 0 && tempX <= _width)
+        {
+          <line x1="@Invariant(tempX)" y1="0" x2="@Invariant(tempX)" y2="@Invariant(Height)" stroke="white"
+                stroke-opacity="0.6" stroke-width="1" stroke-dasharray="4 4" style="transition: x1 0.5s ease, x2 0.5s ease;" />
+        }
+      }
+
+      @for (int i = 0; i < Points.Count; i++)
+      {
+        var index = i;
+        var p = Points[index];
+        var x = GetPointX(index);
+        var y = GetPwmY(p.Speed);
+        var isHovered = _hoverIndex == index;
+        var isDragging = _draggingIndex == index;
+
+        <g class="cursor-pointer" @onpointerenter="() => _hoverIndex = index" @onpointerleave="() => _hoverIndex = null">
+
+          <rect x="@Invariant(x - StepX / 2)" y="0" width="@Invariant(StepX)" height="@Invariant(Height)"
+                fill="transparent" />
+
+          <line x1="@Invariant(x)" y1="0" x2="@Invariant(x)" y2="@Invariant(Height)" stroke="@Color" stroke-width="1"
+                opacity="@(isHovered || isDragging ? 0.5 : 0)" style="transition: opacity 0.1s" />
+
+
+          <circle cx="@Invariant(x)" cy="@Invariant(y)" r="@(isDragging ? 8 : 5)"
+                  fill="@(isDragging ? "#fff" : "#1e1e2e")" stroke="@Color" stroke-width="2"
+                  style="@($"filter: drop-shadow(0 0 5px {Color}); pointer-events: none;")" />
+
+          <g transform="translate(@Invariant(x), @Invariant(y - 30))" opacity="@(isHovered || isDragging ? 1 : 0)"
+             style="transition: opacity 0.2s; pointer-events: none;">
+            <rect x="-22" y="-18" width="44" height="22" rx="4" fill="#0f172a" stroke="@Color" stroke-width="1" />
+            <text x="0" y="-3" fill="white" font-size="11" text-anchor="middle" alignment-baseline="middle"
+                  font-weight="bold" font-family="monospace">
+              @PwmToPercent(p.Speed)%
+            </text>
+          </g>
+
+          <text x="@Invariant(x)" y="@Invariant(Height + 15)" fill="@Color" opacity="@(isHovered || isDragging ? 1 : 0.5)"
+                font-size="10" text-anchor="middle" font-family="monospace" font-weight="bold" style="pointer-events: none;">
+            @p.Temperature°
+          </text>
+        </g>
+      }
+    </svg>
+  </div>
+</MudPaper>

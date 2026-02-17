@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <base href="/" />
+    <link href="app.css" rel="stylesheet" />
+    <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet" />
+    <link href="_content/MudBlazor.FontIcons.MaterialIcons/css/font.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <app>Loading...</app>
+    <script src="_framework/blazor.webview.js"></script>
+    <script src="_content/MudBlazor/MudBlazor.min.js"></script>
+    <script>
+        window.curveEditor = {
+            getBoundingClientRect: (element) => {
+                if (!element) return null;
+                const rect = element.getBoundingClientRect();
+                return { top: rect.top, left: rect.left, width: rect.width, height: rect.height };
+            },
+            addResizeListener: (element, dotNetRef) => {
+                if (!element) return;
+                const observer = new ResizeObserver(entries => {
+                    if (entries[0].contentRect.width > 0) {
+                        dotNetRef.invokeMethodAsync('OnResize', entries[0].contentRect.width);
+                    }
+                });
+                observer.observe(element);
+                element._resizeObserver = observer;
+            },
+            removeResizeListener: (element) => {
+                if (element && element._resizeObserver) {
+                    element._resizeObserver.disconnect();
+                    delete element._resizeObserver;
+                }
+            }
+        };
+    </script>
+    <script>
+        window.addEventListener('contextmenu', e => e.preventDefault());
+    </script>
+</body>
+
+</html>
