@@ -78,4 +78,4 @@ This software modifies hardware fan settings via a custom kernel module. The sof
 
 ### 📄 License
 
-This project is licensed under the [MIT License](https://github.com/kursatabayli/hp-fan-control/blob/develop/LICENSE)
+This project is licensed under the [GPL-3.0 License](https://github.com/kursatabayli/hp-fan-control/blob/develop/LICENSE)
